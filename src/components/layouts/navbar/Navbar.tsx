@@ -1,8 +1,8 @@
 import React from "react";
 import classes from "./Navbar.module.css";
 import qclasses from "./QuoteSvg.module.css";
-import { ReactComponent as Quote } from "../../assets/quote.svg";
-import { Button } from "../ui/Button";
+import { ReactComponent as Quote } from "../../../assets/quote.svg";
+import { Button } from "../../ui/Button";
 
 export const Navbar: React.FC = () => {
   return (

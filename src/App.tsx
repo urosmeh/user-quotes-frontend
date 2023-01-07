@@ -1,4 +1,4 @@
-import { Navbar } from "./components/layouts/Navbar";
+import { Navbar } from "./components/layouts/navbar/Navbar";
 import "./index.css";
 
 function App() {
