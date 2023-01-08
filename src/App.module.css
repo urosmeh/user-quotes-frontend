@@ -1,0 +1,12 @@
+.app {
+  position: relative;
+  height: 100vh;
+}
+
+.content {
+  position: absolute;
+  top: 120px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
