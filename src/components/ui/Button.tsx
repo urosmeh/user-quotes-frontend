@@ -17,13 +17,14 @@ export const Button: React.FC<ButtonProps> = ({
   onClickHandler,
   type,
 }) => {
-  console.log(type);
   return (
     <button
       className={`${classes["main-button"]} ${classes[type]}`}
       onClick={onClickHandler}
     >
-      {title}
+      <span className={type === "alternative" ? classes["button-text"] : ""}>
+        {title}
+      </span>
     </button>
   );
 };
