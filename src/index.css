@@ -8,3 +8,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+h4 {
+  font-weight: 400;
+  font-size: 35px;
+  letter-spacing: 0.25px;
+  margin: 0;
+}
+
+.orange {
+  color: #de8667;
+}

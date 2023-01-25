@@ -9,3 +9,8 @@
   align-items: center;
   z-index: 10;
 }
+
+.buttons-container {
+  display: flex;
+  gap: 31px;
+}

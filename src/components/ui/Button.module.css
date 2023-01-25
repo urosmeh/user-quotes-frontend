@@ -9,6 +9,8 @@
   gap: 10px;
   width: 137px;
   height: 40px;
+  font-weight: 400;
+  font-size: 16px;
 }
 
 .primary {
@@ -20,4 +22,12 @@
 .alternative {
   background-color: white;
   border: 2px solid #efb467;
+}
+
+.button-text {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    linear-gradient(257.39deg, #efb467 0%, #de8667 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
