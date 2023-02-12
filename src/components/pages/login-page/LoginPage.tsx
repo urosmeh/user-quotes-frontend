@@ -28,7 +28,7 @@ export const LoginPage: React.FC = () => {
       }
     }
     if (data && isSuccess) {
-      dispatch(saveLogin(data.token));
+      dispatch(saveLogin({token: data.token, id: data.id}));
       navigate("/");
     }
     console.log(status);

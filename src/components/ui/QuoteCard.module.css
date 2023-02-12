@@ -1,0 +1,62 @@
+.card-container {
+  display: flex;
+  flex-direction: row;
+  padding: 4px 32px 16px 16px;
+  gap: 21px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  width: 420px;
+  font-weight: 400;
+}
+
+.voting {
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.quote {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 8px 0px;
+  gap: 21px;
+  width: 100%;
+  text-align: start;
+}
+
+.blurred {
+  filter: blur(1.5px);
+}
+
+.top {
+  margin-left: 15px;
+}
+
+.center {
+  top: 8%;
+  position: absolute;
+  z-index: 2;
+  width: 450px;
+  background-color: white;
+}
+
+.bottom {
+  margin-left: 15px;
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+}
+
+.user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}

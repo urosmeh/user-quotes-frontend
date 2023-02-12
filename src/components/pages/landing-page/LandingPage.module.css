@@ -1,0 +1,55 @@
+.header {
+  color: #de8667;
+}
+
+.quotes {
+  display: flex;
+  justify-content: center;
+}
+
+.explore {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.explore > h2 {
+  font-weight: 300;
+  size: 61px;
+  width: 703px;
+}
+
+.welcome-section {
+  display: flex;
+  flex-direction: row;
+  padding-top: 50px;
+  gap: 145px;
+  justify-content: center;
+}
+
+.welcome-section h1 {
+  margin: 0px;
+  text-align: left;
+}
+
+.welcome-text {
+  width: 556px;
+  gap: 16px;
+}
+
+.welcome-text p {
+  text-align: left;
+}
+
+.cards-section {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.signup {
+  padding-top: 33px;
+  display: flex;
+  justify-content: center;
+}
