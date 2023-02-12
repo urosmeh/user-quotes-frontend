@@ -33,18 +33,14 @@ export const Navbar: React.FC = () => {
         <div className={classes["buttons-container"]}>
           {!token && (
             <>
-              <Link style={{ textDecoration: "none" }} to="/signup">
-                <Button
-                  title="Sign up"
-                  type="primary"
-                />
-              </Link>
+              {location?.pathname !== "/signup" && (
+                <Link style={{ textDecoration: "none" }} to="/signup">
+                  <Button title="Sign up" type="primary" />
+                </Link>
+              )}
               {location?.pathname !== "/login" && (
                 <Link style={{ textDecoration: "none" }} to="/login">
-                  <Button
-                    title="Login"
-                    type="alternative"
-                  />
+                  <Button title="Login" type="alternative" />
                 </Link>
               )}
             </>
