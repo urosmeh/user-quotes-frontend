@@ -116,7 +116,7 @@ export const LoginPage: React.FC = () => {
               onClickHandler={(e) => onLogin(e)}
             ></Button>
           </div>
-          <AuthFormAlt />
+          <AuthFormAlt text="Don't have an account?" path="/signup" linkText="Sign up" />
         </form>
       </div>
     </div>

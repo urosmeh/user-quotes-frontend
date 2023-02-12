@@ -29,7 +29,7 @@ export const SignupPage = () => {
               onClickHandler={() => console.log("test")}
             ></Button>
           </div>
-          <AuthFormAlt/>
+          <AuthFormAlt text="Already have an account?" path="/login" linkText="Sign in"/>
         </form>
       </form>
     </div>

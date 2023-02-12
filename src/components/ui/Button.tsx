@@ -8,7 +8,7 @@ import classes from "../ui/Button.module.css";
 
 interface ButtonProps {
   title: string;
-  onClickHandler: (event: React.MouseEvent<HTMLElement>) => void;
+  onClickHandler?: (event: React.MouseEvent<HTMLElement>) => void;
   type: "primary" | "alternative"; //primary | alternative
 }
 

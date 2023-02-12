@@ -75,7 +75,6 @@ export const LandingPage: React.FC = () => {
                 <Button
                   title="Sign up"
                   type="primary"
-                  onClickHandler={() => console.log("1test")}
                 />
               </Link>
             </div>
@@ -193,7 +192,6 @@ export const LandingPage: React.FC = () => {
           <Button
             title="Sign up to see more"
             type="alternative"
-            onClickHandler={() => console.log("1test")}
           />
         </Link>
       </div>

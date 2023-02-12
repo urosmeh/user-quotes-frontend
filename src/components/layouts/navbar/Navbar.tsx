@@ -37,7 +37,6 @@ export const Navbar: React.FC = () => {
                 <Button
                   title="Sign up"
                   type="primary"
-                  onClickHandler={() => console.log("1test")}
                 />
               </Link>
               {location?.pathname !== "/login" && (
@@ -45,7 +44,6 @@ export const Navbar: React.FC = () => {
                   <Button
                     title="Login"
                     type="alternative"
-                    onClickHandler={() => console.log("1test")}
                   />
                 </Link>
               )}

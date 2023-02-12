@@ -1,9 +1,9 @@
-.sign-up {
+.signup {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.sign-up a {
+.signup a {
   text-decoration: none;
 }
