@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway");
 
 body {
+  min-height: 100vh;
   margin: 0;
   font-family: "Raleway", "Roboto", sans-serif;
   display: flex;
@@ -9,11 +10,31 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1 {
+  font-weight: 300;
+  font-size: 98px;
+}
+
+h2 {
+  font-weight: 300;
+  font-size: 61px;
+}
+
+h3 {
+  font-weight: 400;
+  font-size: 49px;
+}
+
 h4 {
   font-weight: 400;
   font-size: 35px;
   letter-spacing: 0.25px;
   margin: 0;
+}
+
+p {
+  font-weight: 400;
+  font-size: 16px;
 }
 
 .orange {

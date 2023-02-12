@@ -7,6 +7,7 @@ import classes from "./App.module.css";
 import { LoginPage } from "./components/pages/login-page/LoginPage";
 import { useSelector } from "react-redux";
 import { RootState } from "./store";
+import { LandingPage } from "./components/pages/landing-page/LandingPage";
 
 function App() {
   const location = useLocation();
@@ -29,14 +30,7 @@ function App() {
               )
             }
           ></Route>
-          <Route
-            path="/"
-            element={
-              <React.Fragment>
-                <div>home page</div>
-              </React.Fragment>
-            }
-          ></Route>
+          <Route path="/" element={<LandingPage />}></Route>
         </Routes>
       </div>
       <Footer />
