@@ -5,7 +5,9 @@
 
 .content {
   position: absolute;
-  top: 120px;
+  display: flex;
+  flex-direction: column;
+  top: 10rem;
   left: 0;
   width: 100%;
   text-align: center;

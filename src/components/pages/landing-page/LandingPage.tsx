@@ -23,9 +23,9 @@ export const LandingPage: React.FC = () => {
   }, [data, isSuccess, randomQuote]);
 
   return (
-    <>
+    <div>
       {token && (
-        <>
+        <div>
           <LandingPageHeader
             title="Quote of the day"
             subtitle="Quote of the day is randomly chosen quote"
@@ -58,7 +58,7 @@ export const LandingPage: React.FC = () => {
               />
             </div>
           )}
-        </>
+        </div>
       )}
       {!token && (
         <>
@@ -154,31 +154,30 @@ export const LandingPage: React.FC = () => {
             })
             .map((quote: Quote) => {
               return (
-                <div key={quote.id} className={classes.quotes}>
-                  <QuoteCard
-                    id={quote.id}
-                    quote={quote.quote}
-                    user={quote.user}
-                    upvotes={quote.upvotes}
-                    downvotes={quote.downvotes}
-                    isUpvoted={
-                      quote.votes?.findIndex(
-                        (vote) =>
-                          vote.userId.toString() === userId && vote.type === 1
-                      ) === -1
-                        ? false
-                        : true
-                    }
-                    isDownvoted={
-                      quote.votes?.findIndex(
-                        (vote) =>
-                          vote.userId.toString() === userId && vote.type === 0
-                      ) === -1
-                        ? false
-                        : true
-                    }
-                  />
-                </div>
+                <QuoteCard
+                  id={quote.id}
+                  quote={quote.quote}
+                  user={quote.user}
+                  upvotes={quote.upvotes}
+                  downvotes={quote.downvotes}
+                  isUpvoted={
+                    quote.votes?.findIndex(
+                      (vote) =>
+                        vote.userId.toString() === userId && vote.type === 1
+                    ) === -1
+                      ? false
+                      : true
+                  }
+                  isDownvoted={
+                    quote.votes?.findIndex(
+                      (vote) =>
+                        vote.userId.toString() === userId && vote.type === 0
+                    ) === -1
+                      ? false
+                      : true
+                  }
+                  key={quote.id}
+                />
               );
             })}
       </div>
@@ -198,6 +197,6 @@ export const LandingPage: React.FC = () => {
           />
         </Link>
       </div>
-    </>
+    </div>
   );
 };

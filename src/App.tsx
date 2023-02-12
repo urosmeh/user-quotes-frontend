@@ -4,10 +4,11 @@ import { Footer } from "./components/layouts/footer/Footer";
 import { Navbar } from "./components/layouts/navbar/Navbar";
 import "./index.css";
 import classes from "./App.module.css";
-import { LoginPage } from "./components/pages/login-page/LoginPage";
+import { LoginPage } from "./components/pages/auth/LoginPage";
 import { useSelector } from "react-redux";
 import { RootState } from "./store";
 import { LandingPage } from "./components/pages/landing-page/LandingPage";
+import { SignupPage } from "./components/pages/auth/SignupPage";
 
 function App() {
   const location = useLocation();
@@ -18,6 +19,8 @@ function App() {
       <Navbar />
       <div className={classes.content}>
         <Routes>
+          <Route path="/" element={<LandingPage />}></Route>
+
           <Route
             path="/login"
             element={
@@ -25,12 +28,19 @@ function App() {
                 <LoginPage />
               ) : (
                 <Navigate to="/" state={{ from: location }} replace />
-
-                //todo: CREATE COMPONENT (PROTECTED) <Navigate //component to="/" state={{ from: location }} replace />
               )
             }
           ></Route>
-          <Route path="/" element={<LandingPage />}></Route>
+          <Route
+            path="/signup"
+            element={
+              !token ? (
+                <SignupPage />
+              ) : (
+                <Navigate to="/" state={{ from: location }} replace />
+              )
+            }
+          ></Route>
         </Routes>
       </div>
       <Footer />

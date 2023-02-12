@@ -71,15 +71,6 @@
   border-color: #df4759;
 }
 
-.sign-up {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.sign-up a {
-  text-decoration: none;
-}
 
 .response-error {
   color: red;

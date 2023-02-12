@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useLoginMutation, saveLogin } from "../../../store/index";
 import { useLoginErrors } from "../../../hooks/useLoginErrors";
 import { Button } from "../../ui/Button";
 import classes from "./LoginPage.module.css";
+import { AuthFormAlt } from "./AuthFormAlt";
 
 export const LoginPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ export const LoginPage: React.FC = () => {
       }
     }
     if (data && isSuccess) {
-      dispatch(saveLogin({token: data.token, id: data.id}));
+      dispatch(saveLogin({ token: data.token, id: data.id }));
       navigate("/");
     }
     console.log(status);
@@ -86,7 +87,9 @@ export const LoginPage: React.FC = () => {
       </div>
 
       <div className={classes["form-wrapper"]}>
-        {statusMessage && <div className={classes["response-error"]}>{statusMessage}</div>}
+        {statusMessage && (
+          <div className={classes["response-error"]}>{statusMessage}</div>
+        )}
         <form>
           <div className={classes["input-item"]}>
             <label htmlFor="email">Email</label>
@@ -113,10 +116,7 @@ export const LoginPage: React.FC = () => {
               onClickHandler={(e) => onLogin(e)}
             ></Button>
           </div>
-          <div className={classes["sign-up"]}>
-            <div>Don't have an account?</div>
-            <Link to="/">Sign up</Link>
-          </div>
+          <AuthFormAlt />
         </form>
       </div>
     </div>
