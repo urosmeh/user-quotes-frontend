@@ -32,7 +32,7 @@ export const LandingPage: React.FC = () => {
           />
           {isLoading && <h4>Loading</h4>}
           {randomQuote && (
-            <div key={randomQuote.id} className={classes.quotes}>
+            <div key={randomQuote.id} className={classes["random-quote"]}>
               <QuoteCard
                 id={randomQuote.id}
                 quote={randomQuote.quote}
@@ -72,10 +72,7 @@ export const LandingPage: React.FC = () => {
                 quotes, and proverbs. Sign up and express yourself.
               </p>
               <Link style={{ textDecoration: "none" }} to="/signup">
-                <Button
-                  title="Sign up"
-                  type="primary"
-                />
+                <Button title="Sign up" type="primary" />
               </Link>
             </div>
             {
@@ -180,21 +177,20 @@ export const LandingPage: React.FC = () => {
               );
             })}
       </div>
-      <div className={classes.signup}>
-        <Link
-          style={{
-            textDecoration: "none",
-            display: "block",
-            textAlign: "center",
-          }}
-          to="/signup"
-        >
-          <Button
-            title="Sign up to see more"
-            type="alternative"
-          />
-        </Link>
-      </div>
+      {!token && (
+        <div className={classes.signup}>
+          <Link
+            style={{
+              textDecoration: "none",
+              display: "block",
+              textAlign: "center",
+            }}
+            to="/signup"
+          >
+            <Button title="Sign up to see more" type="alternative" />
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

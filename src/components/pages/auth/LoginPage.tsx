@@ -6,6 +6,7 @@ import { useLoginErrors } from "../../../hooks/useLoginErrors";
 import { Button } from "../../ui/Button";
 import classes from "./LoginPage.module.css";
 import { AuthFormAlt } from "./AuthFormAlt";
+import { AuthHeader } from "../../ui/AuthHeader";
 
 export const LoginPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -76,17 +77,13 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className={classes.container}>
-      <div>
-        <h4>
-          Welcome <span className="orange">back!</span>
-        </h4>
-      </div>
-      <div>
-        Thank you for coming back. Hope you have a good day and inspire others.
-      </div>
-
+    <div className={classes.content}>
       <div className={classes["form-wrapper"]}>
+        <AuthHeader
+          header="Welcome back!"
+          subtitle="Thank you for coming back. Hope you have a good day and inspire
+        others."
+        />
         {statusMessage && (
           <div className={classes["response-error"]}>{statusMessage}</div>
         )}
@@ -116,7 +113,11 @@ export const LoginPage: React.FC = () => {
               onClickHandler={(e) => onLogin(e)}
             ></Button>
           </div>
-          <AuthFormAlt text="Don't have an account?" path="/signup" linkText="Sign up" />
+          <AuthFormAlt
+            text="Don't have an account?"
+            path="/signup"
+            linkText="Sign up"
+          />
         </form>
       </div>
     </div>

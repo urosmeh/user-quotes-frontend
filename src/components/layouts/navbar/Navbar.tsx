@@ -22,12 +22,14 @@ export const Navbar: React.FC = () => {
     <>
       <header className={classes.header}>
         <div>
-          <h3>
-            Quotastic
-            <span className={qclasses["quote-vector"]}>
-              <Quote />
-            </span>
-          </h3>
+          <Link to="/" className={classes["home-link"]}>
+            <h3>
+              Quotastic
+              <span className={qclasses["quote-vector"]}>
+                <Quote />
+              </span>
+            </h3>
+          </Link>
         </div>
 
         <div className={classes["buttons-container"]}>

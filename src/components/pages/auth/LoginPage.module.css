@@ -1,24 +1,20 @@
-.container {
+.content {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  position: absolute;
-  top: 151px;
-  left: 35.42%;
-  height: 351px;
-  width: 420px;
-  right: 35.42%;
   justify-content: center;
   align-items: center;
+  padding: 0px;
+  gap: 8px;
+  width: 100%;
 }
 
 .form-wrapper {
+  width: 420px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
   align-items: flex-start;
   justify-content: flex-start;
-  width: 100%;
 }
 
 .form-wrapper > form {
@@ -70,7 +66,6 @@
 .input-item input.error {
   border-color: #df4759;
 }
-
 
 .response-error {
   color: red;

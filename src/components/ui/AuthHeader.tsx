@@ -10,10 +10,10 @@ export const AuthHeader = ({ header, subtitle }: AuthHeaderProps) => {
 
   return (
     <>
-      <h4>
+      <h4 style={{ alignSelf: "center" }}>
         {black} <span className="orange">{orange}</span>
       </h4>
-      <p>{subtitle}</p>
+      <p style={{ margin: 0 }}>{subtitle}</p>
     </>
   );
 };

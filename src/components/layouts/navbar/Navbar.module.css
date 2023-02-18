@@ -14,3 +14,12 @@
   display: flex;
   gap: 31px;
 }
+
+.home-link {
+  text-decoration: none;
+  /* color: black; */
+}
+
+.home-link:visited {
+  color: inherit;
+}
