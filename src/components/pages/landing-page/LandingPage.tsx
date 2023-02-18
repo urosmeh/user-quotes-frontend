@@ -71,9 +71,11 @@ export const LandingPage: React.FC = () => {
                 Quotastic is free online platform for you to explore the quips,
                 quotes, and proverbs. Sign up and express yourself.
               </p>
-              <Link style={{ textDecoration: "none" }} to="/signup">
-                <Button title="Sign up" type="primary" />
-              </Link>
+              <div style={{ display: "flex" }}>
+                <Link style={{ textDecoration: "none" }} to="/signup">
+                  <Button title="Sign up" type="primary" />
+                </Link>
+              </div>
             </div>
             {
               <div className={classes["cards-section"]}>
