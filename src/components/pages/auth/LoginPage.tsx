@@ -7,6 +7,7 @@ import { Button } from "../../ui/Button";
 import classes from "./LoginPage.module.css";
 import { AuthFormAlt } from "./AuthFormAlt";
 import { AuthHeader } from "../../ui/AuthHeader";
+import { InputItem } from "../../ui/InputItem";
 
 export const LoginPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -67,12 +68,10 @@ export const LoginPage: React.FC = () => {
   };
 
   const onChangeUsername = (value: string) => {
-    //todo:maybe validate here?
     setUsername(value);
   };
 
   const onChangePassword = (value: string) => {
-    //todo:maybe validate here?
     setPassword(value);
   };
 
@@ -88,31 +87,29 @@ export const LoginPage: React.FC = () => {
           <div className={classes["response-error"]}>{statusMessage}</div>
         )}
         <form>
-          <div className={classes["input-item"]}>
-            <label htmlFor="email">Email</label>
-            <input
-              type="text"
-              id="email"
-              onChange={(e) => onChangeUsername(e.target.value)}
-              className={errors.usernameError ? classes.error : ""}
-            ></input>
-          </div>
-          <div className={classes["input-item"]}>
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              onChange={(e) => onChangePassword(e.target.value)}
-              className={errors.passwordError ? classes.error : ""}
-            ></input>
-          </div>
-          <div className={classes["input-item"]}>
-            <Button
-              title="Login"
-              type="alternative"
-              onClickHandler={(e) => onLogin(e)}
-            ></Button>
-          </div>
+          <InputItem
+            label="Email"
+            labelFor="email"
+            type="text"
+            id="email"
+            onChangeHandler={onChangeUsername}
+            value={username}
+            invalid={errors.usernameError}
+          />
+          <InputItem
+            label="Password"
+            labelFor="password"
+            type="password"
+            id="password"
+            onChangeHandler={onChangePassword}
+            value={password}
+            invalid={errors.passwordError}
+          />
+          <Button
+            title="Login"
+            type="alternative"
+            onClickHandler={(e) => onLogin(e)}
+          ></Button>
           <AuthFormAlt
             text="Don't have an account?"
             path="/signup"

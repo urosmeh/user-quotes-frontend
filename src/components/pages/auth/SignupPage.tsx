@@ -6,6 +6,7 @@ import { AuthFormAlt } from "./AuthFormAlt";
 import { useLoginMutation, useSignupMutation, saveLogin } from "../../../store";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { InputItem } from "../../ui/InputItem";
 
 export const SignupPage = () => {
   const [signup, { isSuccess }] = useSignupMutation();
@@ -15,6 +16,18 @@ export const SignupPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
+
+  const onChangeUsername = (value: string) => {
+    setUsername(value);
+  };
+
+  const onChangePassword = (value: string) => {
+    setPassword(value);
+  };
+
+  const onChangeConfPassword = (value: string) => {
+    setConfPassword(value);
+  };
 
   const handleSignup = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
@@ -50,48 +63,37 @@ export const SignupPage = () => {
         />
         <img alt="signup-avatar" src={signupAvatar}></img>
         <form>
-          <div className={classes["input-item"]}>
-            <label htmlFor="email">Email</label>
-            <input
-              type="text"
-              id="email"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setUsername(e.target.value)
-              }
-              value={username}
-            ></input>
-          </div>
-          <div className={classes["input-item"]}>
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setPassword(e.target.value)
-              }
-              value={password}
-            ></input>
-          </div>
-          <div className={classes["input-item"]}>
-            <label htmlFor="password">Confirm password</label>
-            <input
-              type="password"
-              id="confPassword"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setConfPassword(e.target.value)
-              }
-              value={confPassword}
-            ></input>
-          </div>
-          <div className={classes["input-item"]}>
-            <Button
-              title="Signup"
-              type="alternative"
-              onClickHandler={(e: React.MouseEvent<HTMLElement>) =>
-                handleSignup(e)
-              }
-            ></Button>
-          </div>
+          <InputItem
+            label="Email"
+            labelFor="email"
+            type="text"
+            id="email"
+            onChangeHandler={onChangeUsername}
+            value={username}
+          />
+          <InputItem
+            label="Password"
+            labelFor="password"
+            type="password"
+            id="password"
+            onChangeHandler={onChangePassword}
+            value={password}
+          />
+          <InputItem
+            label="Confrim password"
+            labelFor="confPassword"
+            type="password"
+            id="confPassword"
+            onChangeHandler={onChangeConfPassword}
+            value={confPassword}
+          />
+          <Button
+            title="Signup"
+            type="alternative"
+            onClickHandler={(e: React.MouseEvent<HTMLElement>) =>
+              handleSignup(e)
+            }
+          ></Button>
           <AuthFormAlt
             text="Already have an account?"
             path="/login"

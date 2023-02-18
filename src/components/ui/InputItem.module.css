@@ -1,0 +1,42 @@
+.input-item {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.input-item > input {
+  border: 2px solid #de8667;
+  border-radius: 32px;
+  padding: 8px 30px 8px 24px;
+  width: 100%;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box; /* Opera/IE 8+ */
+}
+
+/* .input-item > input:focus-visible {
+    all: inherit;
+  } */
+
+.input-item > label {
+  font-weight: 500;
+  height: 14px;
+  line-height: 14px;
+}
+
+.input-item > button {
+  width: 100%;
+}
+
+.input-item input:focus-visible {
+  outline: none;
+}
+
+.input-item input:focus {
+  outline: none;
+}
+
+.input-item input.error {
+  border-color: #df4759;
+}
