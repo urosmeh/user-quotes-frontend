@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useLoginMutation, saveLogin } from "../../../store/index";
 import { useLoginErrors } from "../../../hooks/useLoginErrors";
 import { Button } from "../../ui/Button";
 import classes from "./LoginPage.module.css";
+import { AuthFormAlt } from "./AuthFormAlt";
+import { AuthHeader } from "../../ui/AuthHeader";
+import { InputItem } from "../../ui/InputItem";
 
 export const LoginPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -28,7 +31,7 @@ export const LoginPage: React.FC = () => {
       }
     }
     if (data && isSuccess) {
-      dispatch(saveLogin({token: data.token, id: data.id}));
+      dispatch(saveLogin({ token: data.token, id: data.id }));
       navigate("/");
     }
     console.log(status);
@@ -65,58 +68,51 @@ export const LoginPage: React.FC = () => {
   };
 
   const onChangeUsername = (value: string) => {
-    //todo:maybe validate here?
     setUsername(value);
   };
 
   const onChangePassword = (value: string) => {
-    //todo:maybe validate here?
     setPassword(value);
   };
 
   return (
-    <div className={classes.container}>
-      <div>
-        <h4>
-          Welcome <span className="orange">back!</span>
-        </h4>
-      </div>
-      <div>
-        Thank you for coming back. Hope you have a good day and inspire others.
-      </div>
-
+    <div className={classes.content}>
       <div className={classes["form-wrapper"]}>
-        {statusMessage && <div className={classes["response-error"]}>{statusMessage}</div>}
+        <AuthHeader
+          header="Welcome back!"
+          subtitle="Thank you for coming back. Hope you have a good day and inspire
+        others."
+        />
+        {statusMessage && (
+          <div className={classes["response-error"]}>{statusMessage}</div>
+        )}
         <form>
-          <div className={classes["input-item"]}>
-            <label htmlFor="email">Email</label>
-            <input
-              type="text"
-              id="email"
-              onChange={(e) => onChangeUsername(e.target.value)}
-              className={errors.usernameError ? classes.error : ""}
-            ></input>
-          </div>
-          <div className={classes["input-item"]}>
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              onChange={(e) => onChangePassword(e.target.value)}
-              className={errors.passwordError ? classes.error : ""}
-            ></input>
-          </div>
-          <div className={classes["input-item"]}>
-            <Button
-              title="Login"
-              type="alternative"
-              onClickHandler={(e) => onLogin(e)}
-            ></Button>
-          </div>
-          <div className={classes["sign-up"]}>
-            <div>Don't have an account?</div>
-            <Link to="/">Sign up</Link>
-          </div>
+          <InputItem
+            label="Email"
+            labelFor="email"
+            type="text"
+            id="email"
+            onChangeHandler={onChangeUsername}
+            value={username}
+          />
+          <InputItem
+            label="Password"
+            labelFor="password"
+            type="password"
+            id="password"
+            onChangeHandler={onChangePassword}
+            value={password}
+          />
+          <Button
+            title="Login"
+            type="alternative"
+            onClickHandler={(e) => onLogin(e)}
+          ></Button>
+          <AuthFormAlt
+            text="Don't have an account?"
+            path="/signup"
+            linkText="Sign up"
+          />
         </form>
       </div>
     </div>

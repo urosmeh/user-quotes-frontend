@@ -23,16 +23,16 @@ export const LandingPage: React.FC = () => {
   }, [data, isSuccess, randomQuote]);
 
   return (
-    <>
+    <div>
       {token && (
-        <>
+        <div>
           <LandingPageHeader
             title="Quote of the day"
             subtitle="Quote of the day is randomly chosen quote"
           />
           {isLoading && <h4>Loading</h4>}
           {randomQuote && (
-            <div key={randomQuote.id} className={classes.quotes}>
+            <div key={randomQuote.id} className={classes["random-quote"]}>
               <QuoteCard
                 id={randomQuote.id}
                 quote={randomQuote.quote}
@@ -58,7 +58,7 @@ export const LandingPage: React.FC = () => {
               />
             </div>
           )}
-        </>
+        </div>
       )}
       {!token && (
         <>
@@ -71,13 +71,11 @@ export const LandingPage: React.FC = () => {
                 Quotastic is free online platform for you to explore the quips,
                 quotes, and proverbs. Sign up and express yourself.
               </p>
-              <Link style={{ textDecoration: "none" }} to="/signup">
-                <Button
-                  title="Sign up"
-                  type="primary"
-                  onClickHandler={() => console.log("1test")}
-                />
-              </Link>
+              <div style={{ display: "flex" }}>
+                <Link style={{ textDecoration: "none" }} to="/signup">
+                  <Button title="Sign up" type="primary" />
+                </Link>
+              </div>
             </div>
             {
               <div className={classes["cards-section"]}>
@@ -154,50 +152,47 @@ export const LandingPage: React.FC = () => {
             })
             .map((quote: Quote) => {
               return (
-                <div key={quote.id} className={classes.quotes}>
-                  <QuoteCard
-                    id={quote.id}
-                    quote={quote.quote}
-                    user={quote.user}
-                    upvotes={quote.upvotes}
-                    downvotes={quote.downvotes}
-                    isUpvoted={
-                      quote.votes?.findIndex(
-                        (vote) =>
-                          vote.userId.toString() === userId && vote.type === 1
-                      ) === -1
-                        ? false
-                        : true
-                    }
-                    isDownvoted={
-                      quote.votes?.findIndex(
-                        (vote) =>
-                          vote.userId.toString() === userId && vote.type === 0
-                      ) === -1
-                        ? false
-                        : true
-                    }
-                  />
-                </div>
+                <QuoteCard
+                  id={quote.id}
+                  quote={quote.quote}
+                  user={quote.user}
+                  upvotes={quote.upvotes}
+                  downvotes={quote.downvotes}
+                  isUpvoted={
+                    quote.votes?.findIndex(
+                      (vote) =>
+                        vote.userId.toString() === userId && vote.type === 1
+                    ) === -1
+                      ? false
+                      : true
+                  }
+                  isDownvoted={
+                    quote.votes?.findIndex(
+                      (vote) =>
+                        vote.userId.toString() === userId && vote.type === 0
+                    ) === -1
+                      ? false
+                      : true
+                  }
+                  key={quote.id}
+                />
               );
             })}
       </div>
-      <div className={classes.signup}>
-        <Link
-          style={{
-            textDecoration: "none",
-            display: "block",
-            textAlign: "center",
-          }}
-          to="/signup"
-        >
-          <Button
-            title="Sign up to see more"
-            type="alternative"
-            onClickHandler={() => console.log("1test")}
-          />
-        </Link>
-      </div>
-    </>
+      {!token && (
+        <div className={classes.signup}>
+          <Link
+            style={{
+              textDecoration: "none",
+              display: "block",
+              textAlign: "center",
+            }}
+            to="/signup"
+          >
+            <Button title="Sign up to see more" type="alternative" />
+          </Link>
+        </div>
+      )}
+    </div>
   );
 };

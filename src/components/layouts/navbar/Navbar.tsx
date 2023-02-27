@@ -22,31 +22,27 @@ export const Navbar: React.FC = () => {
     <>
       <header className={classes.header}>
         <div>
-          <h3>
-            Quotastic
-            <span className={qclasses["quote-vector"]}>
-              <Quote />
-            </span>
-          </h3>
+          <Link to="/" className={classes["home-link"]}>
+            <h3>
+              Quotastic
+              <span className={qclasses["quote-vector"]}>
+                <Quote />
+              </span>
+            </h3>
+          </Link>
         </div>
 
         <div className={classes["buttons-container"]}>
           {!token && (
             <>
-              <Link style={{ textDecoration: "none" }} to="/signup">
-                <Button
-                  title="Sign up"
-                  type="primary"
-                  onClickHandler={() => console.log("1test")}
-                />
-              </Link>
+              {location?.pathname !== "/signup" && (
+                <Link style={{ textDecoration: "none" }} to="/signup">
+                  <Button title="Sign up" type="primary" />
+                </Link>
+              )}
               {location?.pathname !== "/login" && (
                 <Link style={{ textDecoration: "none" }} to="/login">
-                  <Button
-                    title="Login"
-                    type="alternative"
-                    onClickHandler={() => console.log("1test")}
-                  />
+                  <Button title="Login" type="alternative" />
                 </Link>
               )}
             </>

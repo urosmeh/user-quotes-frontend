@@ -1,0 +1,9 @@
+.signup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.signup a {
+  text-decoration: none;
+}
