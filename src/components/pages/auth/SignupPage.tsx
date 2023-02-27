@@ -4,9 +4,10 @@ import signupAvatar from "../../../assets/img/uploadAvatar.png";
 import { Button } from "../../ui/Button";
 import { AuthFormAlt } from "./AuthFormAlt";
 import { useLoginMutation, useSignupMutation, saveLogin } from "../../../store";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { InputItem } from "../../ui/InputItem";
+import { useLoginErrors } from "../../../hooks/useLoginErrors";
 
 export const SignupPage = () => {
   const [signup, { isSuccess }] = useSignupMutation();
@@ -16,6 +17,8 @@ export const SignupPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
+  const { errors, updateErrors } = useLoginErrors();
 
   const onChangeUsername = (value: string) => {
     setUsername(value);
@@ -29,18 +32,47 @@ export const SignupPage = () => {
     setConfPassword(value);
   };
 
+  const validateForm = () => {
+    let { usernameError, passwordError } = { ...errors };
+    if (!username || username.length < 4) {
+      usernameError = true;
+    } else {
+      usernameError = false;
+    }
+
+    if (!password || password.length < 4) {
+      passwordError = true;
+    } else {
+      passwordError = false;
+    }
+    updateErrors(usernameError, passwordError);
+
+    if (password !== confPassword) {
+      setStatusMessage("Error: Check confirmed password!");
+    }
+  };
+
   const handleSignup = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    try {
-      const res = await signup({ username, password }).unwrap();
-      console.log(res);
-      debugger;
-      if (res.username) {
-        const { token, id } = await login({ username, password }).unwrap();
-        dispatch(saveLogin({ token, id }));
+    validateForm();
+
+    if (
+      !errors.passwordError &&
+      !errors.usernameError &&
+      password === confPassword
+    ) {
+      try {
+        const res = await signup({ username, password }).unwrap();
+        console.log(res);
+        if (res.username) {
+          const { token, id } = await login({ username, password }).unwrap();
+          dispatch(saveLogin({ token, id }));
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
+    } else {
+      console.log("test");
     }
   };
 
@@ -62,6 +94,9 @@ export const SignupPage = () => {
           subtitle="Your name will appear on quotes and your public profile."
         />
         <img alt="signup-avatar" src={signupAvatar}></img>
+        {statusMessage && (
+          <p className={classes["response-error"]}>{statusMessage}</p>
+        )}
         <form>
           <InputItem
             label="Email"
@@ -70,6 +105,7 @@ export const SignupPage = () => {
             id="email"
             onChangeHandler={onChangeUsername}
             value={username}
+            error={errors.usernameError ? "This field is required" : ""}
           />
           <InputItem
             label="Password"
@@ -78,14 +114,20 @@ export const SignupPage = () => {
             id="password"
             onChangeHandler={onChangePassword}
             value={password}
+            error={errors.passwordError ? "This field is required" : ""}
           />
           <InputItem
-            label="Confrim password"
+            label="Confirm password"
             labelFor="confPassword"
             type="password"
             id="confPassword"
             onChangeHandler={onChangeConfPassword}
             value={confPassword}
+            error={
+              !errors.passwordError && confPassword !== password
+                ? "Passwords not matching"
+                : ""
+            }
           />
           <Button
             title="Signup"

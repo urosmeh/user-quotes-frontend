@@ -94,7 +94,6 @@ export const LoginPage: React.FC = () => {
             id="email"
             onChangeHandler={onChangeUsername}
             value={username}
-            invalid={errors.usernameError}
           />
           <InputItem
             label="Password"
@@ -103,7 +102,6 @@ export const LoginPage: React.FC = () => {
             id="password"
             onChangeHandler={onChangePassword}
             value={password}
-            invalid={errors.passwordError}
           />
           <Button
             title="Login"

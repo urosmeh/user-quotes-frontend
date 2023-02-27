@@ -40,3 +40,9 @@
 .input-item input.error {
   border-color: #df4759;
 }
+
+.error-label {
+  padding-left: 5px;
+  font-size: 14px;
+  color: red;
+}

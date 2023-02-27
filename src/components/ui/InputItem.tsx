@@ -9,6 +9,7 @@ export type InputItemProps = {
   onChangeHandler: (val: string) => void;
   value: string;
   invalid?: boolean;
+  error?: string;
 };
 
 export const InputItem = ({
@@ -18,11 +19,14 @@ export const InputItem = ({
   onChangeHandler,
   value,
   id,
-  invalid,
+  error,
 }: InputItemProps) => {
   return (
     <div className={classes["input-item"]}>
-      <label htmlFor={labelFor}>{label}</label>
+      <div>
+        <label htmlFor={labelFor}>{label}</label>
+        <span className={classes["error-label"]}>{error}</span>
+      </div>
       <input
         type={type}
         id={id}
@@ -30,7 +34,7 @@ export const InputItem = ({
           onChangeHandler(e.target.value)
         }
         value={value}
-        className={invalid ? classes.error : ""}
+        className={error ? classes.error : ""}
       ></input>
     </div>
   );
