@@ -4,14 +4,14 @@ import signupAvatar from "../../../assets/img/uploadAvatar.png";
 import { Button } from "../../ui/Button";
 import { AuthFormAlt } from "./AuthFormAlt";
 import { useLoginMutation, useSignupMutation, saveLogin } from "../../../store";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { InputItem } from "../../ui/InputItem";
 import { useLoginErrors } from "../../../hooks/useLoginErrors";
 
 export const SignupPage = () => {
-  const [signup, { isSuccess }] = useSignupMutation();
-  const [login, { isLoading }] = useLoginMutation();
+  const [signup] = useSignupMutation();
+  const [login] = useLoginMutation();
   const dispatch = useDispatch();
 
   const [username, setUsername] = useState("");
