@@ -7,9 +7,9 @@ import classes from "../ui/Button.module.css";
 // }
 
 interface ButtonProps {
-  title: string;
+  title?: string;
   onClickHandler?: (event: React.MouseEvent<HTMLElement>) => void;
-  type: "primary" | "alternative"; //primary | alternative
+  type: "primary" | "alternative" | "round"; //primary | alternative
 }
 
 export const Button: React.FC<ButtonProps> = ({

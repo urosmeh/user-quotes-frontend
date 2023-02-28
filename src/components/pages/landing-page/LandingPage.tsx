@@ -15,12 +15,10 @@ export const LandingPage: React.FC = () => {
   const { data, isLoading, isSuccess } = useGetQuotesQuery();
   const [randomQuote, setRandomQuote] = useState<Quote | null>(null);
   const { token, userId } = useSelector((state: RootState) => state.authToken);
-  console.log(userId);
 
   useEffect(() => {
     if (!randomQuote && data && isSuccess) {
       setRandomQuote(data[Math.floor(Math.random() * data.length)]);
-      console.log(data);
     }
   }, [data, isSuccess, randomQuote]);
 

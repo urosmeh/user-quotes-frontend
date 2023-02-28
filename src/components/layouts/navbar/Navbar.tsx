@@ -9,6 +9,8 @@ import { RootState } from "../../../store";
 import { useDispatch } from "react-redux";
 import { saveLogout } from "../../../store/index";
 import signupAvatar from "../../../assets/img/uploadAvatar.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export const Navbar: React.FC = () => {
   const { token, avatar } = useSelector((state: RootState) => state.authToken);
@@ -72,6 +74,9 @@ export const Navbar: React.FC = () => {
                 }
                 alt="avatar"
               ></img>
+              <Link style={{ textDecoration: "none" }} to="/">
+                <FontAwesomeIcon className="orange" icon={faPlus} onClick={() => console.log("add quote modal")}/>
+              </Link>
             </>
           )}
         </div>

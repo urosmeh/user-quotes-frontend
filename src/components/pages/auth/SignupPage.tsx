@@ -63,7 +63,6 @@ export const SignupPage = () => {
     ) {
       try {
         const res = await signup({ username, password }).unwrap();
-        console.log(res);
         if (res.username) {
           const { token, id } = await login({ username, password }).unwrap();
           dispatch(saveLogin({ token, id }));
