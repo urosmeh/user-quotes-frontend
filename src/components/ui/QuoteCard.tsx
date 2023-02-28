@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { IconButton } from "./IconButton";
 import { useUpvoteMutation } from "../../store";
+import signupAvatar from "../../assets/img/uploadAvatar.png";
 
 export type QuoteProps = Quote & {
   isBlurred?: boolean;
@@ -48,7 +49,17 @@ export const QuoteCard: React.FC<QuoteProps> = ({
       </div>
       <div className={classes.quote}>
         <p>{quote}</p>
-        <div>{user.username}</div>
+        <div className={classes.user}>
+          <img
+            src={
+              user.avatar
+                ? `http://localhost:3000/users/avatar/${user.avatar}`
+                : signupAvatar
+            }
+            alt="quote-user"
+          ></img>{" "}
+          {user.username}
+        </div>
       </div>
     </div>
   );

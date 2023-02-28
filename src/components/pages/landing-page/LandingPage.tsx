@@ -15,10 +15,12 @@ export const LandingPage: React.FC = () => {
   const { data, isLoading, isSuccess } = useGetQuotesQuery();
   const [randomQuote, setRandomQuote] = useState<Quote | null>(null);
   const { token, userId } = useSelector((state: RootState) => state.authToken);
+  console.log(userId);
 
   useEffect(() => {
     if (!randomQuote && data && isSuccess) {
       setRandomQuote(data[Math.floor(Math.random() * data.length)]);
+      console.log(data);
     }
   }, [data, isSuccess, randomQuote]);
 
@@ -41,16 +43,14 @@ export const LandingPage: React.FC = () => {
                 downvotes={randomQuote.downvotes}
                 isUpvoted={
                   randomQuote.votes?.findIndex(
-                    (vote) =>
-                      vote.userId.toString() === userId && vote.type === 0
+                    (vote) => vote.userId === userId && vote.type === 0
                   ) === -1
                     ? false
                     : true
                 }
                 isDownvoted={
                   randomQuote.votes?.findIndex(
-                    (vote) =>
-                      vote.userId.toString() === userId && vote.type === 1
+                    (vote) => vote.userId === userId && vote.type === 1
                   ) === -1
                     ? false
                     : true
@@ -60,6 +60,9 @@ export const LandingPage: React.FC = () => {
           )}
         </div>
       )}
+
+      {/* UNAUTHENTICATED */}
+
       {!token && (
         <>
           <div className={classes["welcome-section"]}>
@@ -160,16 +163,14 @@ export const LandingPage: React.FC = () => {
                   downvotes={quote.downvotes}
                   isUpvoted={
                     quote.votes?.findIndex(
-                      (vote) =>
-                        vote.userId.toString() === userId && vote.type === 1
+                      (vote) => vote.userId === userId && vote.type === 1
                     ) === -1
                       ? false
                       : true
                   }
                   isDownvoted={
                     quote.votes?.findIndex(
-                      (vote) =>
-                        vote.userId.toString() === userId && vote.type === 0
+                      (vote) => vote.userId === userId && vote.type === 0
                     ) === -1
                       ? false
                       : true

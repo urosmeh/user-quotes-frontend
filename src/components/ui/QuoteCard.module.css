@@ -50,8 +50,8 @@
 }
 
 .avatar {
-  width: 24px;
-  height: 24px;
+  width: 45px;
+  height: 45px;
 }
 
 .user {
@@ -59,4 +59,8 @@
   flex-direction: row;
   align-items: center;
   gap: 10px;
+}
+
+.user img {
+  width: 45px;
 }
