@@ -8,9 +8,10 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import { useDispatch } from "react-redux";
 import { saveLogout } from "../../../store/index";
+import signupAvatar from "../../../assets/img/uploadAvatar.png";
 
 export const Navbar: React.FC = () => {
-  const { token } = useSelector((state: RootState) => state.authToken);
+  const { token, avatar } = useSelector((state: RootState) => state.authToken);
   const dispatch = useDispatch();
   const onLogout = () => {
     dispatch(saveLogout());
@@ -48,13 +49,30 @@ export const Navbar: React.FC = () => {
             </>
           )}
           {token && (
-            <Link style={{ textDecoration: "none" }} to="/">
-              <Button
-                title="Logout"
-                type="alternative"
-                onClickHandler={onLogout}
-              />
-            </Link>
+            <>
+              <Link style={{ textDecoration: "none" }} to="/">
+                <Button title="Home" type="alternative" />
+              </Link>
+              <Link style={{ textDecoration: "none" }} to="/">
+                <Button title="Settings" type="alternative" />
+              </Link>
+              <Link style={{ textDecoration: "none" }} to="/">
+                <Button
+                  title="Logout"
+                  type="alternative"
+                  onClickHandler={onLogout}
+                />
+              </Link>
+              <img
+                style={{ width: "65px" }}
+                src={
+                  avatar
+                    ? `http://localhost:3000/users/avatar/${avatar}`
+                    : signupAvatar
+                }
+                alt="avatar"
+              ></img>
+            </>
           )}
         </div>
       </header>

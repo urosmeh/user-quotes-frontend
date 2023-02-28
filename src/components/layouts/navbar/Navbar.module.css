@@ -13,6 +13,7 @@
 .buttons-container {
   display: flex;
   gap: 31px;
+  align-items: center;
 }
 
 .home-link {
