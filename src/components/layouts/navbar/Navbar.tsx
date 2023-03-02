@@ -13,7 +13,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export const Navbar: React.FC = () => {
-  const { token, avatar } = useSelector((state: RootState) => state.authToken);
+  const { token, avatar, userId } = useSelector(
+    (state: RootState) => state.authToken
+  );
+
   const dispatch = useDispatch();
   const onLogout = () => {
     dispatch(saveLogout());
@@ -65,17 +68,23 @@ export const Navbar: React.FC = () => {
                   onClickHandler={onLogout}
                 />
               </Link>
-              <img
-                style={{ width: "65px" }}
-                src={
-                  avatar
-                    ? `http://localhost:3000/users/avatar/${avatar}`
-                    : signupAvatar
-                }
-                alt="avatar"
-              ></img>
+              <Link style={{ textDecoration: "none" }} to={`/users/${userId}`}>
+                <img
+                  src={
+                    avatar
+                      ? `http://localhost:3000/users/avatar/${avatar}`
+                      : signupAvatar
+                  }
+                  style={{ width: "65px" }}
+                  alt="avatar"
+                ></img>
+              </Link>
               <Link style={{ textDecoration: "none" }} to="/">
-                <FontAwesomeIcon className="orange" icon={faPlus} onClick={() => console.log("add quote modal")}/>
+                <FontAwesomeIcon
+                  className="orange"
+                  icon={faPlus}
+                  onClick={() => console.log("add quote modal")}
+                />
               </Link>
             </>
           )}

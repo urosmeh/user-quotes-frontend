@@ -12,13 +12,19 @@ import avatar1 from "../../../assets/img/avatar.png";
 import avatar2 from "../../../assets/img/avatar2.png";
 
 export const LandingPage: React.FC = () => {
-  const { data, isLoading, isSuccess } = useGetQuotesQuery();
+  const [page, setPage] = useState(1);
+  const { data, isLoading, isSuccess, refetch } = useGetQuotesQuery(page);
   const [randomQuote, setRandomQuote] = useState<Quote | null>(null);
   const { token, userId } = useSelector((state: RootState) => state.authToken);
 
+  const onLoadMore = () => {
+    setPage(page + 1);
+    refetch();
+  };
+
   useEffect(() => {
     if (!randomQuote && data && isSuccess) {
-      setRandomQuote(data[Math.floor(Math.random() * data.length)]);
+      setRandomQuote(data.data[Math.floor(Math.random() * data.data.length)]);
     }
   }, [data, isSuccess, randomQuote]);
 
@@ -147,7 +153,8 @@ export const LandingPage: React.FC = () => {
         }}
       >
         {data &&
-          data
+          data.data &&
+          data.data
             .filter((quote: Quote) => {
               return quote.id !== randomQuote?.id;
             })
@@ -178,6 +185,21 @@ export const LandingPage: React.FC = () => {
               );
             })}
       </div>
+      {token && data && data.data && page < data.lastPage && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "10px",
+          }}
+        >
+          <Button
+            type="alternative"
+            title="Load more"
+            onClickHandler={onLoadMore}
+          />
+        </div>
+      )}
       {!token && (
         <div className={classes.signup}>
           <Link

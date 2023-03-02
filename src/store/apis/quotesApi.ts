@@ -1,6 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Quote } from "../../interfaces/Quote";
 
+export type QuotesResponse = {
+  data: Array<Quote>;
+  page: number;
+  total: number;
+  lastPage: number;
+};
+
 const quotesApi = createApi({
   reducerPath: "quotes",
   baseQuery: fetchBaseQuery({
@@ -17,14 +24,19 @@ const quotesApi = createApi({
   tagTypes: ["Quote"],
   endpoints(builder) {
     return {
-      getQuotes: builder.query<Quote[], void>({
-        query: () => ({
+      getQuotes: builder.query<QuotesResponse, number>({
+        //todo: add page param
+        query: (page) => ({
           url: "",
+          params: { page },
         }),
         providesTags: (result) =>
-          result
+          result && result.data
             ? [
-                ...result.map(({ id }) => ({ type: "Quote" as const, id })),
+                ...result.data.map(({ id }) => ({
+                  type: "Quote" as const,
+                  id,
+                })),
                 "Quote",
               ]
             : ["Quote"],

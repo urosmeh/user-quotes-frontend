@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "./store";
 import { LandingPage } from "./components/pages/landing-page/LandingPage";
 import { SignupPage } from "./components/pages/auth/SignupPage";
+import { ProfilePage } from "./components/pages/profile/ProfilePage";
 
 function App() {
   const location = useLocation();
@@ -41,6 +42,7 @@ function App() {
               )
             }
           ></Route>
+          <Route path="users/:userId" element={<ProfilePage />}></Route>
         </Routes>
       </div>
       <Footer />
