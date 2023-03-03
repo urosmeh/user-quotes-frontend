@@ -16,7 +16,7 @@ function App() {
   const { token } = useSelector((state: RootState) => state.authToken);
 
   return (
-    <div className={classes.app}>
+    <div>
       <Navbar />
       <div className={classes.content}>
         <Routes>
@@ -42,7 +42,16 @@ function App() {
               )
             }
           ></Route>
-          <Route path="users/:userId" element={<ProfilePage />}></Route>
+          <Route
+            path="users/:userId"
+            element={
+              token ? (
+                <ProfilePage />
+              ) : (
+                <Navigate to="/login" state={{ from: location }} replace />
+              )
+            }
+          ></Route>
         </Routes>
       </div>
       <Footer />

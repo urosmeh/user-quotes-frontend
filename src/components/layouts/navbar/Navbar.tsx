@@ -11,6 +11,9 @@ import { saveLogout } from "../../../store/index";
 import signupAvatar from "../../../assets/img/uploadAvatar.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import Modal from "../../ui/Modal";
+import useModal from "../../../hooks/useModal";
+import { CreateQuote } from "../../modals/CreateQuote";
 
 export const Navbar: React.FC = () => {
   const { token, avatar, userId } = useSelector(
@@ -23,9 +26,13 @@ export const Navbar: React.FC = () => {
     redirect("/");
   };
   const location = useLocation();
+  const { isOpen, toggle } = useModal();
 
   return (
     <>
+      <Modal isOpen={isOpen} toggle={toggle}>
+        <CreateQuote />
+      </Modal>
       <header className={classes.header}>
         <div>
           <Link to="/" className={classes["home-link"]}>
@@ -79,13 +86,12 @@ export const Navbar: React.FC = () => {
                   alt="avatar"
                 ></img>
               </Link>
-              <Link style={{ textDecoration: "none" }} to="/">
-                <FontAwesomeIcon
-                  className="orange"
-                  icon={faPlus}
-                  onClick={() => console.log("add quote modal")}
-                />
-              </Link>
+              <FontAwesomeIcon
+                cursor="pointer"
+                className="orange"
+                icon={faPlus}
+                onClick={toggle}
+              />
             </>
           )}
         </div>
