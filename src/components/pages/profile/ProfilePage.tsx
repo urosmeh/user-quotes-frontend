@@ -10,7 +10,7 @@ import { QuoteCard } from "../../ui/QuoteCard";
 import pAvatar from "../../../assets/img/uploadAvatar.png";
 import { useEffect, useState } from "react";
 import { Button } from "../../ui/Button";
-import Modal from "../../ui/Modal";
+import Modal from "../../ui/Modal/Modal";
 import useModal from "../../../hooks/useModal";
 import { useDispatch } from "react-redux";
 
@@ -51,11 +51,8 @@ export const ProfilePage = () => {
     refetch: refetchLiked,
   } = useGetUserLikedByIdQuery({ id: userId, page: likedPage });
 
-  const {
-    data: userQuotes,
-    isLoading: isUserQuotesLoading,
-    refetch: refetchUserQuotes,
-  } = useGetUserQuotesByIdQuery({ id: userId, page: quotesPage });
+  const { data: userQuotes, refetch: refetchUserQuotes } =
+    useGetUserQuotesByIdQuery({ id: userId, page: quotesPage });
 
   const onLoadMoreLiked = () => {
     setLikedPage(likedPage + 1);
@@ -69,16 +66,15 @@ export const ProfilePage = () => {
 
   return (
     <>
-      <button onClick={toggle}>modal</button>
       <div
         style={{
           display: "flex",
-          padding: "70px",
+          padding: "",
           flexDirection: "column",
           alignItems: "center",
         }}
       >
-        <div>
+        <div style={{ backgroundColor: "#de8667", width: "100%" }}>
           <img
             src={
               userData?.avatar
@@ -139,7 +135,7 @@ export const ProfilePage = () => {
             )}
 
             <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-              <p style={{ margin: 0 }}>User likes</p>
+              <h5>User likes</h5>
               {liked?.data.map((q: Quote) => (
                 <QuoteCard
                   id={q.id}
@@ -184,7 +180,7 @@ export const ProfilePage = () => {
             </div>
 
             <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-              <p style={{ margin: 0 }}>Most recent</p>
+              <h5>User quotes</h5>
               {userQuotes &&
                 userQuotes.data.map((q: Quote) => (
                   <QuoteCard

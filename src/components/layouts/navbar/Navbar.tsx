@@ -11,9 +11,9 @@ import { saveLogout } from "../../../store/index";
 import signupAvatar from "../../../assets/img/uploadAvatar.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import Modal from "../../ui/Modal";
+import Modal from "../../ui/Modal/Modal";
 import useModal from "../../../hooks/useModal";
-import { CreateQuote } from "../../modals/CreateQuote";
+import { EditQuote } from "../../modals/EditQuote";
 
 export const Navbar: React.FC = () => {
   const { token, avatar, userId } = useSelector(
@@ -29,9 +29,13 @@ export const Navbar: React.FC = () => {
   const { isOpen, toggle } = useModal();
 
   return (
-    <>
+    <div
+      className={
+        location.pathname.indexOf("users") >= 0 ? classes.orangebg : ""
+      }
+    >
       <Modal isOpen={isOpen} toggle={toggle}>
-        <CreateQuote />
+        <EditQuote closeModal={toggle} />
       </Modal>
       <header className={classes.header}>
         <div>
@@ -88,7 +92,9 @@ export const Navbar: React.FC = () => {
               </Link>
               <FontAwesomeIcon
                 cursor="pointer"
-                className="orange"
+                className={
+                  location.pathname.indexOf("users") >= 0 ? "" : "orange"
+                }
                 icon={faPlus}
                 onClick={toggle}
               />
@@ -96,6 +102,6 @@ export const Navbar: React.FC = () => {
           )}
         </div>
       </header>
-    </>
+    </div>
   );
 };

@@ -1,5 +1,16 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Quote } from "../../interfaces/Quote";
+import { User } from "../../interfaces/User";
+
+export type CreateQuote = {
+  quote: string;
+};
+
+export type CreateQuoteResponse = {
+  id: number;
+  quote: string;
+  user: User;
+};
 
 export type QuotesResponse = {
   data: Array<Quote>;
@@ -41,6 +52,16 @@ const quotesApi = createApi({
               ]
             : ["Quote"],
       }),
+      createQuote: builder.mutation<CreateQuoteResponse, CreateQuote>({
+        query: (quote: CreateQuote) => {
+          return {
+            url: "/create",
+            method: "POST",
+            body: quote,
+          };
+        },
+        invalidatesTags: ["Quote"],
+      }),
       upvote: builder.mutation<any, any>({
         query: (quoteId: number) => {
           return {
@@ -54,5 +75,6 @@ const quotesApi = createApi({
   },
 });
 
-export const { useGetQuotesQuery, useUpvoteMutation } = quotesApi;
+export const { useGetQuotesQuery, useUpvoteMutation, useCreateQuoteMutation } =
+  quotesApi;
 export { quotesApi };

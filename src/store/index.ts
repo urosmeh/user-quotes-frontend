@@ -27,7 +27,11 @@ export type RootState = ReturnType<typeof store.getState>;
 export { store };
 export { saveLogin, saveLogout };
 export { useLoginMutation, useSignupMutation } from "./apis/authApi";
-export { useGetQuotesQuery, useUpvoteMutation } from "./apis/quotesApi";
+export {
+  useGetQuotesQuery,
+  useUpvoteMutation,
+  useCreateQuoteMutation,
+} from "./apis/quotesApi";
 export {
   useGetUserByIdQuery,
   useGetUserAvatarQuery,

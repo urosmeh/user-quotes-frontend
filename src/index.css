@@ -46,3 +46,7 @@ p {
 .orange {
   color: #de8667;
 }
+
+.error {
+  color: red;
+}

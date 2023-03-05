@@ -7,8 +7,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 46px 70px 0px 70px;
+  padding: 46px 70px 0px 70px;
   /* z-index: 10; */
+}
+
+.orangebg {
+  background-color: #de8667;
 }
 
 .buttons-container {

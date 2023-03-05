@@ -42,6 +42,8 @@ const usersApi = createApi({
         url: `avatar/${avatar}`,
       }),
     }),
+
+    //todo: move this to quotes (for tags invalidation)
     getUserLikedById: builder.query<UserQuotesResponse, UserQuotesRequest>({
       query: ({ id, page }) => ({
         url: `/${id}/liked`,
