@@ -9,13 +9,14 @@ import { useSelector } from "react-redux";
 import { RootState } from "./store";
 import { LandingPage } from "./components/pages/landing-page/LandingPage";
 import { SignupPage } from "./components/pages/auth/SignupPage";
+import { ProfilePage } from "./components/pages/profile/ProfilePage";
 
 function App() {
   const location = useLocation();
   const { token } = useSelector((state: RootState) => state.authToken);
 
   return (
-    <div className={classes.app}>
+    <div>
       <Navbar />
       <div className={classes.content}>
         <Routes>
@@ -38,6 +39,16 @@ function App() {
                 <SignupPage />
               ) : (
                 <Navigate to="/" state={{ from: location }} replace />
+              )
+            }
+          ></Route>
+          <Route
+            path="users/:userId"
+            element={
+              token ? (
+                <ProfilePage />
+              ) : (
+                <Navigate to="/login" state={{ from: location }} replace />
               )
             }
           ></Route>

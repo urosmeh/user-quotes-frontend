@@ -25,6 +25,14 @@
   border: 2px solid #efb467;
 }
 
+.round {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  min-width: 40px;
+  outline: none;
+}
+
 .button-text {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
     linear-gradient(257.39deg, #efb467 0%, #de8667 100%);

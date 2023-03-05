@@ -36,7 +36,6 @@ export const LoginPage: React.FC = () => {
       );
       navigate("/");
     }
-    console.log(status);
   }, [isError, isLoading, isSuccess, data, dispatch, navigate, status, error]);
 
   const validateForm = (): void => {

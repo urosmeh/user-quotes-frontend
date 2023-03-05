@@ -1,5 +1,23 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Quote } from "../../interfaces/Quote";
+import { User } from "../../interfaces/User";
+
+export type CreateQuote = {
+  quote: string;
+};
+
+export type CreateQuoteResponse = {
+  id: number;
+  quote: string;
+  user: User;
+};
+
+export type QuotesResponse = {
+  data: Array<Quote>;
+  page: number;
+  total: number;
+  lastPage: number;
+};
 
 const quotesApi = createApi({
   reducerPath: "quotes",
@@ -17,17 +35,32 @@ const quotesApi = createApi({
   tagTypes: ["Quote"],
   endpoints(builder) {
     return {
-      getQuotes: builder.query<Quote[], void>({
-        query: () => ({
+      getQuotes: builder.query<QuotesResponse, number>({
+        //todo: add page param
+        query: (page) => ({
           url: "",
+          params: { page },
         }),
         providesTags: (result) =>
-          result
+          result && result.data
             ? [
-                ...result.map(({ id }) => ({ type: "Quote" as const, id })),
+                ...result.data.map(({ id }) => ({
+                  type: "Quote" as const,
+                  id,
+                })),
                 "Quote",
               ]
             : ["Quote"],
+      }),
+      createQuote: builder.mutation<CreateQuoteResponse, CreateQuote>({
+        query: (quote: CreateQuote) => {
+          return {
+            url: "/create",
+            method: "POST",
+            body: quote,
+          };
+        },
+        invalidatesTags: ["Quote"],
       }),
       upvote: builder.mutation<any, any>({
         query: (quoteId: number) => {
@@ -42,5 +75,6 @@ const quotesApi = createApi({
   },
 });
 
-export const { useGetQuotesQuery, useUpvoteMutation } = quotesApi;
+export const { useGetQuotesQuery, useUpvoteMutation, useCreateQuoteMutation } =
+  quotesApi;
 export { quotesApi };

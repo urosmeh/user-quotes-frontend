@@ -3,14 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 export type AuthState = {
   token: string;
   userId: number;
-  avatar: string;
+  avatar?: string;
 };
 const userId = localStorage.getItem("userId");
+const avatar = localStorage.getItem("avatar");
 
 const initialState = {
   token: localStorage.getItem("token"),
   userId: userId ? parseInt(userId) : null,
-  avatar: null,
+  avatar: avatar,
 };
 
 export const authSlice = createSlice({
@@ -18,10 +19,10 @@ export const authSlice = createSlice({
   initialState: initialState,
   reducers: {
     saveLogin(state, action) {
-      console.log(action);
       const { token, id, avatar } = action.payload;
       localStorage.setItem("token", token);
       localStorage.setItem("userId", id);
+      localStorage.setItem("avatar", avatar);
       state.token = token;
       state.userId = id;
       state.avatar = avatar;
@@ -29,6 +30,7 @@ export const authSlice = createSlice({
     saveLogout(state) {
       localStorage.removeItem("token");
       localStorage.removeItem("userId");
+      localStorage.removeItem("avatar");
       state.token = null;
       state.userId = null;
       state.avatar = null;

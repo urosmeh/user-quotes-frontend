@@ -9,18 +9,34 @@ import { RootState } from "../../../store";
 import { useDispatch } from "react-redux";
 import { saveLogout } from "../../../store/index";
 import signupAvatar from "../../../assets/img/uploadAvatar.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import Modal from "../../ui/Modal/Modal";
+import useModal from "../../../hooks/useModal";
+import { EditQuote } from "../../modals/EditQuote";
 
 export const Navbar: React.FC = () => {
-  const { token, avatar } = useSelector((state: RootState) => state.authToken);
+  const { token, avatar, userId } = useSelector(
+    (state: RootState) => state.authToken
+  );
+
   const dispatch = useDispatch();
   const onLogout = () => {
     dispatch(saveLogout());
     redirect("/");
   };
   const location = useLocation();
+  const { isOpen, toggle } = useModal();
 
   return (
-    <>
+    <div
+      className={
+        location.pathname.indexOf("users") >= 0 ? classes.orangebg : ""
+      }
+    >
+      <Modal isOpen={isOpen} toggle={toggle}>
+        <EditQuote closeModal={toggle} />
+      </Modal>
       <header className={classes.header}>
         <div>
           <Link to="/" className={classes["home-link"]}>
@@ -63,19 +79,29 @@ export const Navbar: React.FC = () => {
                   onClickHandler={onLogout}
                 />
               </Link>
-              <img
-                style={{ width: "65px" }}
-                src={
-                  avatar
-                    ? `http://localhost:3000/users/avatar/${avatar}`
-                    : signupAvatar
+              <Link style={{ textDecoration: "none" }} to={`/users/${userId}`}>
+                <img
+                  src={
+                    avatar
+                      ? `http://localhost:3000/users/avatar/${avatar}`
+                      : signupAvatar
+                  }
+                  style={{ width: "65px" }}
+                  alt="avatar"
+                ></img>
+              </Link>
+              <FontAwesomeIcon
+                cursor="pointer"
+                className={
+                  location.pathname.indexOf("users") >= 0 ? "" : "orange"
                 }
-                alt="avatar"
-              ></img>
+                icon={faPlus}
+                onClick={toggle}
+              />
             </>
           )}
         </div>
       </header>
-    </>
+    </div>
   );
 };

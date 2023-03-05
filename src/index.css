@@ -32,6 +32,12 @@ h4 {
   margin: 0;
 }
 
+h5 {
+  font-weight: 400;
+  font-size: 35px;
+  margin: 0;
+}
+
 p {
   font-weight: 400;
   font-size: 16px;
@@ -39,4 +45,8 @@ p {
 
 .orange {
   color: #de8667;
+}
+
+.error {
+  color: red;
 }

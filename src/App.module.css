@@ -1,13 +1,13 @@
-.app {
+/* .app {
   position: relative;
   height: 100vh;
-}
+} */
 
 .content {
   position: absolute;
   display: flex;
   flex-direction: column;
-  top: 10rem;
+  /* top: 10rem; */
   left: 0;
   width: 100%;
   text-align: center;

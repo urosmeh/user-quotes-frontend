@@ -1,15 +1,5 @@
-interface User {
-  id: number;
-  username: string;
-  avatar: string;
-}
-
-interface Vote {
-  id: number;
-  userId: number;
-  quoteId: number;
-  type: 0 | 1;
-}
+import { User } from "./User";
+import { Vote } from "./Vote";
 
 export interface Quote {
   id: number;

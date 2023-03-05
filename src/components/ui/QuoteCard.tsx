@@ -1,10 +1,16 @@
 import { Quote } from "../../interfaces/Quote";
 import classes from "./QuoteCard.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleUp,
+  faAngleDown,
+  faCog,
+  faClose,
+} from "@fortawesome/free-solid-svg-icons";
 import { IconButton } from "./IconButton";
-import { useUpvoteMutation } from "../../store";
+import { RootState, useUpvoteMutation } from "../../store";
 import signupAvatar from "../../assets/img/uploadAvatar.png";
+import { useSelector } from "react-redux";
 
 export type QuoteProps = Quote & {
   isBlurred?: boolean;
@@ -19,6 +25,7 @@ export const QuoteCard: React.FC<QuoteProps> = ({
   isUpvoted,
   isDownvoted,
 }: QuoteProps) => {
+  const { token, userId } = useSelector((state: RootState) => state.authToken);
   const [upvote] = useUpvoteMutation();
 
   const onUpvoteClick = (id: number) => {
@@ -61,6 +68,27 @@ export const QuoteCard: React.FC<QuoteProps> = ({
           {user.username}
         </div>
       </div>
+      {token && userId === user.id && (
+        <div
+          style={{
+            display: "flex",
+            alignSelf: "center",
+            flexDirection: "column",
+            gap: "21px",
+          }}
+        >
+          <div>
+            <IconButton onClickHandler={() => console.log("settings")}>
+              <FontAwesomeIcon icon={faCog} className="orange" />
+            </IconButton>
+          </div>
+          <div>
+            <IconButton onClickHandler={() => console.log("delete")}>
+              <FontAwesomeIcon icon={faClose} className="orange" />
+            </IconButton>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

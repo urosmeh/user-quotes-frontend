@@ -1,0 +1,11 @@
+.tarea {
+  margin: 16px 0 32px 0;
+  position: relative;
+  height: 124px;
+  max-width: 93.5%;
+  width: 93.5%;
+  border: 2px solid #de8667;
+  border-radius: 16px;
+  font: inherit;
+  padding: 16px 24px 16px 24px;
+}
